@@ -24,13 +24,15 @@ $endeavour->post(
 // POST route
 $endeavour->post(
     '/login',
-    function () use ($DB) {
+    function () use ($DB, $endeavour) {
 
-        if (!array_key_exists('EmailAddress', $_POST)) {
+        $request = json_decode($endeavour->request()->getBody(), true);
+
+        if (!array_key_exists('EmailAddress', $request)) {
             throw new Exception('EmailAddress not provided', '400::invalid_login');
         }
 
-        if (!array_key_exists('Password', $_POST)) {
+        if (!array_key_exists('Password', $request)) {
             throw new Exception('Password not provided', '400::invalid_login');
         }
 
@@ -43,7 +45,7 @@ $endeavour->post(
         $record = $DB->GetRow(
             $query,
             array(
-                $_POST['EmailAddress']
+                $request['EmailAddress']
             )
         );
 
@@ -51,7 +53,7 @@ $endeavour->post(
             throw new Exception('Email address not registered', '400::invalid_login');
         }
 
-        if ($record['Password'] != Utils::hashPassword($_POST['Password'])) {
+        if ($record['Password'] != Utils::hashPassword($request['Password'])) {
             throw new Exception('Invalid login', '400::invalid_login');
         }
 

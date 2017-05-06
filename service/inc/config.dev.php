@@ -10,10 +10,10 @@ define( 'DB_USER', 'root' );
 define( 'DB_PASS', 'kazahak138' );
 
 // Database name
-define( 'DB_NAME', 'endeavour' );
+define( 'DB_NAME', 'endeavour2' );
 
 // SMTP Host
-define( 'SMTP_HOST', 'sh22-eqx3-syd.ha-node.net' );
+define( 'SMTP_HOST', 'localhost' );
 
 // SMTP Port
 define( 'SMTP_PORT', '465' );
