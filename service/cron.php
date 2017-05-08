@@ -11,7 +11,7 @@ define('ENDEAVOUR_DIR', $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
 require 'inc/config.beta.php';
 
 // Require ADOdb
-require 'vendor/adodb5/adodb.inc.php';
+require 'vendor/adodb/adodb-php/adodb.inc.php';
 
 // Database connection
 $DB = NewADOConnection('mysqli');
@@ -36,7 +36,7 @@ while ($lookingForEmails) {
         // Max 100 emails at a time
         exit;
     }
-    
+
     $email = $DB->GetRow($DB->Prepare('SELECT * FROM `Emails` WHERE `Status` = 1 ORDER BY `ID` ASC LIMIT 1'));
 
     if (!$email) {
@@ -73,7 +73,7 @@ while ($lookingForEmails) {
 
 
     // Load PHPMailer vendor library
-    require_once 'vendor/PHPMailer/PHPMailerAutoload.php';
+    require_once 'vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
 
     // New PHPMailer

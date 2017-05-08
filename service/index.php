@@ -21,7 +21,7 @@ define('ENDEAVOUR_DIR', $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
 require 'inc/config.dev.php';
 
 // Require Slim vendor library
-require 'vendor/Slim/Slim.php';
+require 'vendor/slim/slim/Slim/Slim.php';
 
 // Register Slim auto loader
 \Slim\Slim::registerAutoloader();
@@ -33,7 +33,7 @@ $endeavour = new \Slim\Slim();
 $endeavour->config('debug', false);
 
 // Require ADOdb
-require 'vendor/adodb5/adodb.inc.php';
+require 'vendor/adodb/adodb-php/adodb.inc.php';
 
 // Database connection
 $DB = NewADOConnection('mysqli');
@@ -91,7 +91,7 @@ $endeavour->error(function (\Exception $e) use ($endeavour) {
 });
 
 $endeavour->hook('slim.after', function () use ($endeavour) {
-    
+
     $DB = $GLOBALS['DB'];
 
     $finishMicrotime = microtime(true);
